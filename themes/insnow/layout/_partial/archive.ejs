@@ -1,0 +1,12 @@
+<ul class="post-list">
+  <% page.posts.each(function(post){ %>
+  <li class="post-list-child">
+    <div class="post-list-left">
+      <a href="/<%=post.path%>"><%= post.title %></a>
+    </div>
+    <span class="post-list-date">
+      <%= post.date.format('YYYY-MM-DD') %>
+    </span>
+  </li>
+  <% }) %>
+</ul>

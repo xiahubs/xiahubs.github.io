@@ -1,0 +1,15 @@
+# footer链接配置
+footer:
+  # wechat: https://cdn.jsdelivr.net/gh/mizoreyo/static/images/wechat.PNG
+  mail: mailto:wzncoder@qq.com
+  gitee: https://gitee.com/simas
+
+# 收藏页面配置
+collection:
+  - title: Google Hacking Database
+    link: https://www.exploit-db.com/google-hacking-database
+    author: Google
+    site: https://www.exploit-db.com
+  - title: 搜信源-缘故事
+    link: https://souxinyuan.com/
+    author: 凡科教育
