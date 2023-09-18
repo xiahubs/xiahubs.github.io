@@ -104,6 +104,9 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: insnow
 
+tag_plantuml:
+    type: static
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
