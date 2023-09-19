@@ -9,4 +9,15 @@
     </span>
   </li>
   <% }) %>
+
+  <div class="post-list-paginator">
+    <!-- <%- page.total%> -->
+    <% if (page.total > 1){ %>
+      <%- paginator({
+        prev_text: '←',
+        next_text: '→'
+      }) %>
+    <% } %>
+  </div>
+
 </ul>
