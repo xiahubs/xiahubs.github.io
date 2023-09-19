@@ -13,3 +13,7 @@ collection:
   - title: 搜信源-缘故事
     link: https://souxinyuan.com/
     author: 凡科教育
+
+page_404:
+  enable: true
+  subtitle: 'Oops! Page not found.'
