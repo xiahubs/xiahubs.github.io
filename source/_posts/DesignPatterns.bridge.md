@@ -26,13 +26,12 @@ class ConcreteImplementorA {
 class ConcreteImplementorB {
   + OperationImp()
 }
+
 Client -right-> Abstraction
 Abstraction "extend" o-right-> Implementor
 RefinedAbstraction -up-> Abstraction
 ConcreteImplementorA -up-> Implementor
 ConcreteImplementorB -up-> Implementor
-
-
 {% endplantuml %}
 
 ### 意图
