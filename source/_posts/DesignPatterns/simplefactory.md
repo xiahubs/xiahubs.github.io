@@ -1,5 +1,5 @@
 ---
-title: 简单工厂模式
+title: Simple Factory（简单工厂）模式
 tags: 
   - 设计模式
 date: 2023-09-15

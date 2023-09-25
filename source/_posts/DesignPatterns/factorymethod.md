@@ -1,5 +1,5 @@
 ---
-title: 工厂方法模式
+title: Factory Method（工厂方法）模式
 tags: 
   - 设计模式
 date: 2023-09-18

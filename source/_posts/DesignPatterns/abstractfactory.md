@@ -1,5 +1,5 @@
 ---
-title: 抽象工厂模式
+title: Abstract Factory（抽象工厂）模式
 tags: 
   - 设计模式
 date: 2023-09-18
@@ -7,56 +7,65 @@ date: 2023-09-18
 
 {% plantuml %}
 !theme sketchy-outline
-interface AbstractFactory << interface >> {
-  + CreaterProductA(): void
-  + CreaterProductB(): void
-}
-interface ConcreteFactory1 << interface >> {
-  + CreateProductA(): void
-  + CreateProduct2(): void
-}
-interface ConcreteFactory2 << interface >> {
-  + CreateProductA(): void
-  + CreateProduct2(): void
+ 
+abstract class AbstractProductA
+{
+  + method() : void
 }
 
-abstract AbstractProductA << interface >> {
-}
-class ProductA2 {
-
-}
-class ProductA1 {
-
+abstract class AbstractProductB
+{
+  + method() : void
 }
 
-abstract AbstractProductB << interface >> {
+class ConcreteProductA1
+{
+   + method() : void
 }
-class ProductB2 {
 
+class ConcreteProductA2
+{
+  + method() : void
 }
-class ProductB1 {
 
+class ConcreteProductB1
+{
+  + method() : void
 }
-class client{}
 
+class ConcreteProductB2
+{
+  + method() : void
+}
+
+abstract class AbstractFactory
+{
+  + createProductA() : AbstractProductA
+  + createProductB() : AbstractProductB
+}
+
+class ConcreteFactory1
+{
+  + createProductA() : AbstractProductA
+  + createProductB() : AbstractProductB
+}
+
+class ConcreteFactory2
+{
+  + createProductA() : AbstractProductA
+  + createProductB() : AbstractProductB
+}
+
+AbstractProductA <|-- ConcreteProductA1
+AbstractProductA <|-- ConcreteProductA2
+AbstractProductB <|-- ConcreteProductB1
+AbstractProductB <|-- ConcreteProductB2
 AbstractFactory <|-- ConcreteFactory1
 AbstractFactory <|-- ConcreteFactory2
-
-AbstractProductA <|-right- ProductA1
-AbstractProductA <|-right- ProductA2
-
-AbstractProductB <|-- ProductB1
-AbstractProductB <|-- ProductB2
-
-AbstractFactory <|-up- client
-AbstractProductA <|-- client
-AbstractProductB <|-- client
-
-ConcreteFactory1 <|.. ProductA2
-ConcreteFactory1 <|.. ProductA1
-
-ConcreteFactory2 <|.. ProductB2
-ConcreteFactory2 <|.. ProductB1
+ConcreteFactory1 ..> ConcreteProductA1
+ConcreteFactory1 ..> ConcreteProductB1
+ConcreteFactory2 ..> ConcreteProductA2
+ConcreteFactory2 ..> ConcreteProductB2
 {% endplantuml %}
 
 ### 意图
