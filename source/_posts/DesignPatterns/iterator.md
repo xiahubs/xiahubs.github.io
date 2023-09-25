@@ -8,35 +8,40 @@ date: 2023-09-25
 {% plantuml %}
 !theme sketchy-outline
 
-class Client {
-  
+class Iterator<< (I,#FF7700) interface>>
+{
+  + next() : Object
+  + hasNext() : boolean
 }
+note right: 迭代器接口
 
-class Aggregate {
-  + CreateIterator()
+class ConcreteIterator
+{
+  + next() : Object
+  + hasNext() : boolean
 }
-class Iterator {
-  + First()
-  + Next()
-  + isDone()
-  + CurrentlItem()
+note right: 具体迭代器类
+
+class Aggregate<< (I,#FF7700) interface>>
+{
+  + add(Object) : void
+  + remove(Object) : void
+  + iterator() : Iterator
 }
+note right: 容器接口
 
-class ConcreteAggregate {
-  + CreatetIterator()
+class ConcreteAggregate
+{
+  + add(Object) : void
+  + remove(Object) : void
+  + iterator() : Iterator
 }
+note right: 具体容器类
 
-class ConcreteIterator {
+Iterator <|.. ConcreteIterator
+Iterator o-- Aggregate
+Aggregate <|.. ConcreteAggregate
 
-}
-
-Client -left-> Aggregate
-Client -right-> Iterator
-ConcreteAggregate -up-> Aggregate
-ConcreteIterator -up-> Iterator
-
-ConcreteAggregate .right.> ConcreteIterator
-ConcreteAggregate <-right- ConcreteIterator
 {% endplantuml %}
 
 ### 意图

@@ -8,39 +8,21 @@ date: 2023-09-24
 {% plantuml %}
 !theme sketchy-outline
 
-abstract class Function {
-  + start(): void
-  + close(): void
+class Facade
+{
+	+ operationA()
+	+ operationB() : void
+	+ operationC() : void
 }
+note right: 系统对外的统一接口
 
-class CPU {
-  + start(): void
-  + close(): void
-}
-class Disk {
-  + start(): void
-  + close(): void
-}
-class Memory {
-  + start(): void
-  + close(): void
-}
+class SystemA << (I,#FF7700) Interface>>
+class SystemB << (I,#FF7700) Interface>>
+class SystemC << (I,#FF7700) Interface>>
+Facade --> SystemA : <<use>>
+Facade --> SystemB : <<use>>
+Facade --> SystemC : <<use>>
 
-class Computer {
-  - cpu: cpu
-  - disk: disk
-  - memory: memory
-  --
-  + start(): void
-  + close(): void
-}
-
-CPU .up.> Function
-Disk .up.> Function
-Memory .up.> Function
-Computer -up-> CPU
-Computer -up-> Disk
-Computer -up-> Memory
 {% endplantuml %}
 
 ### 意图

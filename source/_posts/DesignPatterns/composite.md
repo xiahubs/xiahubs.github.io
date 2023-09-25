@@ -7,32 +7,37 @@ date: 2023-09-19
 
 {% plantuml %}
 !theme sketchy-outline
-class Client {
 
-}
-class Component {
-  + Operation()
-  + Add(Component)
-  + Remove(Component)
-  + GetChild(int)
-}
-class Leaf {
-  + Operation()
-}
-class Composite {
-  + Operation()
-  + Add(Component)
-  + Remove(Component)
-  + GetChild(int)
-}
-note right of Composite
-  forall g in children
-    g.Operation();
-end note
+class Client
 
-Client -right-> Component
-Leaf -up-> Component
-Composite "children" o-up-> Component 
+abstract class Component
+{
+#name:String
+  + Component(String) : void
+  + doSomething() : void
+}
+
+class Leaf
+{
+  + Component(String) : void
+  + doSomething() : void
+}
+
+class Composite
+{
+-components:List<Component>
+  + Component(String) : void
+  + doSomething() : void
+  + addChild(Component) : void
+  + getChildren(int) : Component
+  + removeChild(Component) : void
+}
+
+Component <-left- Client
+Component <|-- Leaf
+Component <|-- Composite
+Component <--o Composite
+
 {% endplantuml %}
 
 ### 意图

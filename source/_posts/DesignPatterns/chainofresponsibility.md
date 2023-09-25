@@ -8,49 +8,27 @@ date: 2023-09-25
 {% plantuml %}
 !theme sketchy-outline
 
-class Client {
+abstract class Handler
+{
+  # successor() : Handler
+  + handleRequest(String) : void
+}
+note left: 抽象处理者
 
+class ConcreteHandler1
+{
+  + handleRequest(String) : void
 }
-interface Handler {
-  + setNext(h: Handler)
-  + handle(request)
-}
-note right of Handler 
-h1 = new HandlerA();
-h2 = new HandlerB();
-h3 = new Handlerc();
-h1.setNext(h2);
-h2.setNext(h3);
-//...
-h1.handle(request);
 
-end note
-class BaseHandler {
-  - next: Handler
-  --
-  + setNext(h: Handler)
-  + handle(request)
+class ConcreteHandler2
+{
+  + handleRequest(String) : void
 }
-note right of BaseHandler 
-if(next != null)
-  next.handle(request)
-end note
-class ConcreteHandlers {
-  + ...
-  --
-  +handle(request)
-}
-note right of ConcreteHandlers 
-if(canHandle(request)) {
-  // ...
-} else {
-  parent: handle(request)
-}
-end note
 
-Client -right-> Handler
-BaseHandler .up.> Handler
-ConcreteHandlers -up-> BaseHandler
+Handler o-- Handler:0..1
+Handler <|-- ConcreteHandler1
+Handler <|-- ConcreteHandler2
+Client ..> Handler
 
 {% endplantuml %}
 

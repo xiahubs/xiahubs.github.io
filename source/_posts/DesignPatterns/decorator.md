@@ -1,37 +1,55 @@
 ---
 title: Decorator（装饰器）模式
 tags: 
-  - 设计模式
+    - 设计模式
 date: 2023-09-19
 ---
 
 {% plantuml %}
 !theme sketchy-outline
-class Component {
-  + Operation()
-}
-class ConcreteComponent {
-  + Operation()
-}
-class Decorator {
-  + Operation()
-}
-note left of Decorator : component -> Operation()
-class ConcreteDecoratorA {
-  + Operation()
-  ---
-  addedState
-}
-class ConcreteDecoratorB {
-  + Operation()
-  + AddedBehavior()
-}
-note right of ConcreteDecoratorB : Decorator:: Operation()\r\nAddedBehavior()
 
-ConcreteComponent -up-> Component
-Decorator "component“ -up-> Component
-ConcreteDecoratorA -up-> Decorator
-ConcreteDecoratorB -up-> Decorator
+abstract class Component
+{
+  + operate() : void
+}
+note top of Component: 抽象组件
+
+class ConcreteComponent
+{
+  + operate() : void
+}
+note top of ConcreteComponent: 组件具体实现类
+
+abstract class Decorator
+{
+  - component:Component
+  + Decorator(Component)
+  + operate() : void
+}
+note left: 抽象类装饰者
+
+class ConreteDecoratorA
+{
+  + ConreteDecoratorA(Component)
+  + operate() : void
+  + operateA() : void
+  + operateB() : void
+}
+
+class ConreteDecoratorB
+{
+  + ConreteDecoratorB(Component)
+  + operate() : void
+  + operateA() : void
+  + operateB() : void
+}
+
+Component <|-- ConcreteComponent
+Component <|-- Decorator
+Component <--o Decorator
+ConreteDecoratorA --|> Decorator
+ConreteDecoratorB --|> Decorator
+
 {% endplantuml %}
 
 ### 意图

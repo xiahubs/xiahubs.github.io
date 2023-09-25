@@ -7,15 +7,16 @@ date: 2023-09-19
 
 {% plantuml %}
 !theme sketchy-outline
-class Singleton {
-  + static Instance()
-  + SingletonOperation()
-  + GetSingletonData()
-  ..
-  ~ static uniqueInstance
-  ~ singletonData
+
+class Singleton
+{
+  + getInstance() : Singleton
+  - Singleton()
 }
-note right of Singleton : return uniqueInstance\n全局访问点
+note right: return uniqueInstance\n全局访问点
+
+Singleton <.. Client
+
 {% endplantuml %}
 
 ### 意图

@@ -24,6 +24,12 @@ class ConcreteStateB
   + Handle(): void
 }
 
+class ConcreteStateC
+{
+  + Handle(): void
+}
+
+
 class Context
 {
   + Request(): void
@@ -32,6 +38,7 @@ class Context
 Context -- State
 State <|.. ConcreteStateA
 State <|.. ConcreteStateB
+State <|.. ConcreteStateC
 
 {% endplantuml %}
 

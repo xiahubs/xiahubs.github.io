@@ -10,32 +10,32 @@ date: 2023-09-18
  
 abstract class AbstractProductA
 {
-  + method() : void
+  + info() : void
 }
 
 abstract class AbstractProductB
 {
-  + method() : void
+  + info() : void
 }
 
 class ConcreteProductA1
 {
-   + method() : void
+  + info() : void
 }
 
 class ConcreteProductA2
 {
-  + method() : void
+  + info() : void
 }
 
 class ConcreteProductB1
 {
-  + method() : void
+  + info() : void
 }
 
 class ConcreteProductB2
 {
-  + method() : void
+  + info() : void
 }
 
 abstract class AbstractFactory
@@ -66,6 +66,7 @@ ConcreteFactory1 ..> ConcreteProductA1
 ConcreteFactory1 ..> ConcreteProductB1
 ConcreteFactory2 ..> ConcreteProductA2
 ConcreteFactory2 ..> ConcreteProductB2
+
 {% endplantuml %}
 
 ### 意图

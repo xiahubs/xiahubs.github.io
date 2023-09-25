@@ -7,29 +7,32 @@ date: 2023-09-24
 
 {% plantuml %}
 !theme sketchy-outline
-class Client {
 
-}
-interface ServiceInterface {
-	+ Operation()
-}
-class Service {
-	+ ...
-	--
-	+ Operation()
-}
-class Proxy {
-	- realService: Service
-	--
-	+ Proxy(s: Service)
-	+ Operation()
-	+ checkAccess()
-}
+class Client
 
-Client -right-> ServiceInterface
-Service -up-> ServiceInterface
-Proxy -up-> ServiceInterface
-Proxy o-right-> Service
+abstract class Subject
+{
+	+ visit()
+}
+note right: 抽象主题类
+
+class RealSubject
+{
+	+ visit()
+}
+note right: 真实主题类
+
+class ProxySubject
+{
+	- mSubject : RealSubject
+	+ visit()
+}
+note right: 代理类
+
+Subject <.left. Client
+Subject <|-- RealSubject
+Subject <|-- ProxySubject
+RealSubject <-- ProxySubject
 
 {% endplantuml %}
 

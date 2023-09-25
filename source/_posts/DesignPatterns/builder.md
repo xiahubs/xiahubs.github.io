@@ -7,29 +7,35 @@ date: 2023-09-18
 
 {% plantuml %}
 !theme sketchy-outline
-interface Director {
-  + Construct()
-}
-note right of Director
-for all objects in structure {
-  builder -> BuildPart();
-}
-end note
 
-interface Builder {
-  + BuildPart()
+abstract class Builder
+{
+  + buildPartA() : void
+  + buildPartB() : void
+  + buildPartC() : void
 }
+note right: 抽象Builder类
 
-class ConcreteBuilder {
-  + BuildPart()
-  + GetResult()
+class ConcreteBuilder
+{
+  + buildPartA() : void
+  + buildPartB() : void
+  + buildPartC() : void
 }
+note right: 具体Builder类
 
-class Product {}
+class Director
+{
+  + construct()
+}
+note right:统一组装过程
 
-Director "builder" o-right-> Builder
-ConcreteBuilder -up-> Builder
-ConcreteBuilder .right.> Product
+abstract class Product
+note right:产品的抽象类
+
+Director o-- Builder
+Builder <|-- ConcreteBuilder
+Product <.. ConcreteBuilder:<<use>>
 {% endplantuml %}
 
 ### 意图

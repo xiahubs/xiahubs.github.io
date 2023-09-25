@@ -8,33 +8,41 @@ date: 2023-09-25
 {% plantuml %}
 !theme sketchy-outline
 
-class Client {
-
+class Invoker
+{
+  - comand:Comand
+  + Invoker(Comand)
+  + action() : void
 }
-class Receiver {
-  + Action()
+note right: 请求者
+
+class Receiver
+{
+  - comand:Comand
+  + action() : void
 }
-class Invoker {
+note right: 接收者
 
+class Comand<< (I,#FF7700) interface>>
+{
+  + execute() : void
 }
+note right: 命令
 
-class Command {
-  + Execute()
+class ConcreteComand
+{
+  - receiver:Receiver
+  + ConcreteComand(Comand)
+  + execute() : void
 }
-class ConcreteCommand {
-  + Execute()
-  --
-  + state
-}
-note right of ConcreteCommand : receiver -> Action();
+note right: 具体命令
 
-Client --> Receiver
-Client ..> ConcreteCommand
+Client..>Invoker
+Client..>Receiver
+Invoker o--> Comand
+Receiver <-- ConcreteComand
+Comand <|.. ConcreteComand
 
-Invoker o-right-> Command
-ConcreteCommand --> Command
-
-Receiver "receiver" -right-> ConcreteCommand
 {% endplantuml %}
 
 ### 意图

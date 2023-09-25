@@ -7,31 +7,31 @@ date: 2023-09-19
 
 {% plantuml %}
 !theme sketchy-outline
-class Client {
 
+abstract class Abstraction
+{
+  + operation()
 }
-class Abstraction {
-  + Operation()
-}
-note right of Abstraction : imp => imp -> OperationImp();
-class RefinedAbstraction {
+note right: 抽象部分
 
-}
-class Implementor {
-  + OperationImp()
-}
-class ConcreteImplementorA {
-  + OperationImp()
-}
-class ConcreteImplementorB {
-  + OperationImp()
-}
+class RefinedAbstraction
+note top of RefinedAbstraction:优化的抽象部分
 
-Client -right-> Abstraction
-Abstraction "extend" o-right-> Implementor
-RefinedAbstraction -up-> Abstraction
-ConcreteImplementorA -up-> Implementor
-ConcreteImplementorB -up-> Implementor
+interface Implementor
+Implementor : + operationImpl()
+note right:实现部分
+
+class Client
+note right : 客户端
+
+ConcreteImplementorA : + operationImpl()
+ConcreteImplementorB : + operationImpl()
+Client --> Abstraction
+RefinedAbstraction --|> Abstraction
+Implementor --o Abstraction
+ConcreteImplementorA ..|> Implementor
+ConcreteImplementorB ..|> Implementor
+
 {% endplantuml %}
 
 ### 意图

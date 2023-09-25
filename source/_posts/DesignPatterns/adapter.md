@@ -7,49 +7,25 @@ date: 2023-09-19
 
 {% plantuml %}
 !theme sketchy-outline
-class Client {
 
-}
-class Adapter {
-  + Request()
-}
-note left of Adapter : SpecificRequest()
-class Adaptee {
-  + SpecificRequest():void
-}
-class Target {
-  + Request():void
+class Target<< (I,#FF7700) Interface>> 
+{
+  + operation1()
+  + operation2() : void
 }
 
-Client -right-|> Target
-Adapter -right-|> Adaptee
-Adapter "extend" -up-|> Target
-
-note "类适配器结构" as Name
-{% endplantuml %}
-
-<br />
-{% plantuml %}
-!theme sketchy-outline
-class Client {
-
-}
-class Adapter {
-  + Request()
-}
-note left of Adapter : adaptee -> SpecificRequest()
-class Adaptee {
-  + SpecificRequest():void
-}
-class Target {
-  + Request():void
+class Adapter{
+  + operation2()
 }
 
-Client -right-|> Target
-Adapter -right-|> Adaptee
-Adapter "adaptee" -up-|> Target
+class Adaptee{
+  + operation3()
+}
+note right: adaptee -> SpecificRequest()
 
-note "对象适配器结构" as Name
+Target <|.. Adapter
+Adaptee <|-- Adapter
+
 {% endplantuml %}
 
 ### 意图

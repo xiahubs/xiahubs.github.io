@@ -8,39 +8,28 @@ date: 2023-09-24
 {% plantuml %}
 !theme sketchy-outline
 
-class FlyweightFactory {
-	+ GetFlyweight(key);
+class FlyweightFactory
+{
+	- mMap : HashMap
+	+ getFlyweight()
 }
-note right of FlyweightFactory
-if(flyweight[key]exists) {
-	retrun existing flyweight;
-} else {
-	create new flyweight;
-	add itt to pool of flyweight;
-	return the new fliweight;
-}
-end note
-class Client {
+note right: 享元工厂
 
+class Flyweight
+{
+	+ dosomething()
 }
-class ConcreteFlyweight {
-	+ Operation(extrinsicState)
-	+ intrinsicState
-}
-class UnsharedConcreteFlyweight {
-	+ Operation(extrinsicState)
-	+ allState
-}
-class Flyweight {
-	+ Operation(extrinsicState)
-}
+note right: 享元对象抽象基类或者接口
 
-FlyweightFactory "flyweights" o-right-> Flyweight
-Client -up-> FlyweightFactory
-Client -up-> ConcreteFlyweight
-Client -up-> UnsharedConcreteFlyweight
-ConcreteFlyweight -up-> Flyweight
-UnsharedConcreteFlyweight -up-> Flyweight
+class ConcreteFlyweight
+{
+	- intrinsicState : String
+	+ dosomething()
+}
+note right: 具体的享元对象
+
+FlyweightFactory *-- Flyweight
+Flyweight <|-- ConcreteFlyweight
 
 {% endplantuml %}
 

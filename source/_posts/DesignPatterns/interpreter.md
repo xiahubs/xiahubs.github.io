@@ -27,6 +27,7 @@ class NonTerminalExpression
 note bottom of NonTerminalExpression: 非终结符表达式
 
 class Context
+note top of Context: 上下文
 
 AbstractExpression <--o NonTerminalExpression
 AbstractExpression<|-- NonTerminalExpression

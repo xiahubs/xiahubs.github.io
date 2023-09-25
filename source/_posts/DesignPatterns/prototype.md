@@ -7,29 +7,22 @@ date: 2023-09-19
 
 {% plantuml %}
 !theme sketchy-outline
-class Client {
-  + Operation()
-}
-note right of Client
-p = prototype->Clone()
-end note
 
-interface Prototype {
-  + Clone()
+class Protype<< (A,#FF7700) interface>>
+{
+  + clone()
 }
+note right: 原型的抽象类或接口
 
-class ConcretePrototype1 {
-  + Clone()
+class ConcreteProtype
+{
+  + clone()
 }
-note bottom of ConcretePrototype1: return copy of self
-class ConcretePrototype2 {
-  + Clone()
-}
-note bottom of ConcretePrototype2: return copy of self
+note right: 具体的原型类
 
-Client "prototype" o-right-> Prototype
-ConcretePrototype1 -up-> Prototype
-ConcretePrototype2 -up-> Prototype
+Protype <|.. ConcreteProtype
+Client ..> Protype:<<import>>
+
 {% endplantuml %}
 
 ### 意图

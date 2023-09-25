@@ -7,38 +7,31 @@ date: 2023-09-18
 
 {% plantuml %}
 !theme sketchy-outline
-interface Product << interface >> {
-  + info(): void
+
+abstract class Factory
+{
+  + createProduct() : Product
 }
 
-class ProductA {
-  + info(): void
+class ConcreteFactory
+{
+  + createProduct() : Product
 }
 
-class ProductB {
-  + info(): void
+abstract class Product
+{
+  + info() : void
 }
 
-class FactoryA {
-  + createProduct(): Product
+class ConcreteProduct
+{
+  + info() : void
 }
 
-class FactoryB {
-  + createProduct(): Product
-}
+Product <|-- ConcreteProduct
+Factory <|-- ConcreteFactory
+ConcreteProduct <.. ConcreteFactory
 
-interface Factory << interface >> {
-  + createProduct(): Product
-}
-
-Product <|-- ProductA
-Product <|-- ProductB
-
-ProductA <|.. FactoryA
-ProductB <|.. FactoryB
-
-FactoryA -down-|> Factory
-FactoryB -down-|> Factory
 {% endplantuml %}
 
 ### 意图

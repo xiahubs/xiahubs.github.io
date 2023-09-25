@@ -8,29 +8,47 @@ date: 2023-09-25
 {% plantuml %}
 !theme sketchy-outline
 
-class Mediator {
-  
+abstract class Colleague
+{
+  # mediator:Mediator
+  + Colleague(Mediator)
+  + action() : void
+}
+note top of Colleague: 抽象同事类
+
+class ConcreteColleagueA
+{
+  + ConcreteColleagueA(Mediator)
+  + action() : void
 }
 
-class ConcreteMediator {
-
-}
-class Colleague {
-
-}
-class ConcreteColleagua1 {
-
-}
-class ConcreteColleagua2 {
-  
+class ConcreteColleagueB
+{
+  + ConcreteColleagueB(Mediator)
+  + action() : void
 }
 
-Colleague "mediator" -left-> Mediator
-ConcreteMediator -up-> Mediator
-ConcreteColleagua1 -up-> Colleague
-ConcreteColleagua2 -up-> Colleague
-ConcreteMediator --> ConcreteColleagua1
-ConcreteMediator --> ConcreteColleagua2
+class ConcreteMediator
+{
+  + method() : void
+}
+note top of ConcreteMediator: 具体中介者
+
+abstract class Mediator
+{
+  # colleagueA:ConcreteColleagueA
+  # colleagueB:ConcreteColleagueB
+  + method() : void
+  + setConcreteColleagueA(ConcreteColleagueA)
+  + setConcreteColleagueB(ConcreteColleagueB)
+}
+note bottom of Mediator: 抽象中介者
+
+Colleague <|-- ConcreteColleagueA
+Colleague <|-- ConcreteColleagueB
+ConcreteMediator <-- ConcreteColleagueA
+ConcreteMediator <-- ConcreteColleagueB
+ConcreteMediator --|> Mediator
 
 {% endplantuml %}
 
