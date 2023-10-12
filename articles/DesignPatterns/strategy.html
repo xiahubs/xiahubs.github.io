@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Strategy（策略）模式  -  
+    
+    I&#39;m 3301
+  </title>
+  <meta name="keywords" content="Xiaers,3301,blog,博客" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/png" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<script>
+  document.documentElement.className = 'dark'
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+  </ul>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%84%8F%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">意图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">适用性</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">Strategy（策略）模式</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-09-25</div>
+      <p class="blog-desc"></p>
+      <div class="article-tags">
+        
+        <a href="/tags/设计模式">#设计模式</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <img  src=http://www.plantuml.com/plantuml/svg/dP112i8m44NtSugngnP9J-36PkNQ4uGmDiMqWMI45lNkMiZeHgAu-_3-OuQ_OKSZOJeJMxUeS64_J0GmJ4pnP2pXaQDXwXUu0k8MTNYIcG_2wmRk0DQRb5Pc8p69ii-EyNs80xln9wlxoz9bwoMjp-Tg8XQxbj0KJsSVAwbN69HwJoG1TxUs_J17cNTVk8O7>
+
+<h3 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h3><p>定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。此模式使得算法可以独立于使用它们的客户而变化。</p>
+<h3 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h3><ul>
+<li>许多相关的类仅仅是行为有异。“策略”提供了一种用多个行为中的一个行为来配置一个类的方法；</li>
+<li>需要使用一个算法的不同变体例如，定义一些反映不同空间的空间&#x2F;时间权衡的算法。当这些变体实现为一个算法的类层次时，可以使用策略模式；</li>
+<li>算法使用客户不应该知道的数据。可使用策略模式以避免暴露复杂的、与算法相关的数据结构；</li>
+<li>一个类定义了多种行为，并且这些行为在这个类的操作中以多个条件语句的形式出现，将相关的条件分支移入它们各自的 Strategy类中，以代替这些条件语句。</li>
+</ul>
+
+</div>
+  
+  <!-- <o3o key="" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+ -->
+</main>
+    <footer>
+  <div class="footer-info">© 2022-2023 Xiaers | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">渝ICP备18016611号-1</a></div>
+  <div class="footer-info">
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/xiahubs"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="mailto:wzncoder@qq.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

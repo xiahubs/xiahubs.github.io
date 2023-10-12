@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Interpreter（解释器）模式  -  
+    
+    I&#39;m 3301
+  </title>
+  <meta name="keywords" content="Xiaers,3301,blog,博客" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/png" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<script>
+  document.documentElement.className = 'dark'
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+  </ul>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%84%8F%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">意图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">适用性</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">Interpreter（解释器）模式</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-09-25</div>
+      <p class="blog-desc"></p>
+      <div class="article-tags">
+        
+        <a href="/tags/设计模式">#设计模式</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <img  src=http://www.plantuml.com/plantuml/svg/Kop9ICrDLIZEJYr9pgZKpIyjoSdCI-NYIamgBYbAJ2vHICv9B2vMS8HoNIiAYbABYpFpyxYgkHGKj1KoyqfIYu1Y9Hh9-K1cHOacLorNNdv9ga99Ve52VXeMdLOApxhsljYuyCN25I_sxNkwfv-B2s99I6fHRcPUOWu9bYJbbvJavuBimTHifV1yTyVptPEVhrc6OPLVVXv5jc7LRwNmSkuyt7OwGqn32Hsec9N2anrTJtPqFvlMpiM56M8ADhgw-JZSZAdQfaPNbsZ52c3LH2e5gdJEoKpDA-62kXjP2000>
+
+<h3 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h3><p>给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。</p>
+<h3 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h3><p><em>Interpreter</em> 模式适用于当有一个语言需要解释执行，并且可将该语言中的句子表示为一个抽象语法树时，以下情况效果最好:</p>
+<ul>
+<li>该文法简单。对于复杂的发文，文法的类层次变得庞大而无法管理。此时语法分析程序生成器这样的工具是更好的选择。它们无须构建抽象语法树即可解释表达式，这样可以节省空间还可能节省时间；</li>
+<li>效率不是一个关键问题。最高效的解释器通常不是通过直接解释语法分析树实现的，而是首先将它们转换成另一种形式。不过，即使在这种情况下，转换器仍然可用该模式实现。</li>
+</ul>
+
+</div>
+  
+  <!-- <o3o key="" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+ -->
+</main>
+    <footer>
+  <div class="footer-info">© 2022-2023 Xiaers | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">渝ICP备18016611号-1</a></div>
+  <div class="footer-info">
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/xiahubs"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="mailto:wzncoder@qq.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

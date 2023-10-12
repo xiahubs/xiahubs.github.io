@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Prototype（原型）模式  -  
+    
+    I&#39;m 3301
+  </title>
+  <meta name="keywords" content="Xiaers,3301,blog,博客" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/png" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<script>
+  document.documentElement.className = 'dark'
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+  </ul>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%84%8F%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">意图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">适用性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">代码示例</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">Prototype（原型）模式</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-09-19</div>
+      <p class="blog-desc"></p>
+      <div class="article-tags">
+        
+        <a href="/tags/设计模式">#设计模式</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <img  src=http://www.plantuml.com/plantuml/svg/Kop9ICrDLIZEJYr9pgZKpIyjoSdCI-NYIiv9B2vM22ZABwaiIBMnKT1mr55sSpCtDp3GLCZCAqajIajCJhMpuwhcKb3GLaZEoSzBrT3agkNAooz9LIZAJCyeiL9usZV_wRpkvxDQddNjVR5nuVEDkvzrJ7lMj_Hf_sAO1SxvUSb5gIMfK8lm6zUw_SdUoK3ZeEPktCt51TMdO5EZfuTXc7DEPcfUYOAUdXtC8rOsDfcv1Vb59K2N0m00>
+
+<h3 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h3><p>用原型实例指定创建对象的种类，并且通过复制这些原型创建新的对象。</p>
+<h3 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h3><ul>
+<li>当一个系统应该独立于它的产品创建、构成和表示时；</li>
+<li>当要实例化的类是在运行时刻指定时，例如，通过动态装载；</li>
+<li>为了避免创建一个与产品类层次平行的工厂类层次时；</li>
+<li>当一个类的实例只能有几个不同状态组合中的一种时。建立相应数目的原型并克隆它们，可能比每次用合适的状态手工实例化该类更方便一些。</li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">&#x2F;&#x2F;&#x2F; 声明一个复制自身的接口。
+interface Prototype &#123;
+  public Object Clone();
+&#125;
+
+&#x2F;&#x2F;&#x2F; 实现一个复制自身的操作。
+class Product : Prototyp &#123;
+  private int id;
+  private double price;
+  
+  public Product() &#123;&#125;
+  public Product(int id, double price) &#123;
+    this.id &#x3D; id;
+    this.price &#x3D; price;
+  &#125;
+
+  public int Id &#123;
+    get &#123; return this.id; &#125;
+  &#125;
+  public double Price &#123;
+    get &#123; return this.price; &#125;
+  &#125;
+
+  &#x2F;&#x2F;&#x2F; 复制具体属性并返回
+  override Object Clone() &#123;
+    Product objects &#x3D; new Prodcut();
+    objects.id &#x3D; this.id;
+    objects.price &#x3D; this.price;
+    
+    return objects;
+  &#125;;
+&#125;</code></pre>
+</div>
+  
+  <!-- <o3o key="" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+ -->
+</main>
+    <footer>
+  <div class="footer-info">© 2022-2023 Xiaers | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">渝ICP备18016611号-1</a></div>
+  <div class="footer-info">
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/xiahubs"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="mailto:wzncoder@qq.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>
