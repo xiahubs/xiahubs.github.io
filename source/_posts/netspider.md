@@ -2,7 +2,7 @@
 title: .netcore 网络爬虫
 subtitle: 爬虫
 tags: 
-  - 计算机扩展
+  - 软件开发
 date: 2023-10-12
 ---
 
