@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Excel2邮件合并  -  
+    
+    I&#39;m 3301
+  </title>
+  <meta name="keywords" content="Xiaers,3301,blog,博客" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/png" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<script>
+  document.documentElement.className = 'dark'
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+  </ul>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E9%9C%80%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">前置需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E8%B7%AF%E5%BE%84"><span class="toc-number">2.</span> <span class="toc-text">功能路径</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">Excel2邮件合并</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-10-13</div>
+      <p class="blog-desc"></p>
+      <div class="article-tags">
+        
+        <a href="/tags/Office组件操作">#Office组件操作</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <h3 id="前置需求"><a href="#前置需求" class="headerlink" title="前置需求"></a>前置需求</h3><p>最近的操刀的项目中,其中有一个事情的工作内容是这样的,从一个 <em>Excel</em> 中摘抄部分字段数据,再根据 <em>Word</em> 模板生成文章内容,由于属于是突发项目,所以就直接采取了比较暴力的手法：从单元格中逐一复制内容到文档中,并保存数据.前前后后忙活了近16个小时.鉴于表格内容过于庞大,替换内容过多,所以其中还不乏众多检查工作,浪费了大量时间.</p>
+<p>在该工作内容结束之后,也在寻思可以通过编程方式读取 <em>Excel</em> 文件生成对象集合并导入到 <em>Word</em> 文件中,奈何编程能力实在有限, <em>Nu-get:Aspose.Words</em> 倒是可以实现所需功能,但普通版生成的文件带有其自身的水印也就放弃了.</p>
+<p>于是乎,我转变思路, <em>Office</em> 这样一个软件本身应该有上述功能,果不其然,在 <em>csblog</em> 中我找到了能够完美实现上述需求的功能点：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_53759248/article/details/122789838"><strong>邮件合并</strong></a>.</p>
+<h3 id="功能路径"><a href="#功能路径" class="headerlink" title="功能路径"></a>功能路径</h3><p>在Word模板文件中：<font color=red><u><strong>引用菜单 → 邮件模块</strong></u></font>,在Excel合并数据文件已经打开的前提条件下 选择 <font color=red><u><strong>打开数据源</strong></u></font>,然后在需要替换文件内容的位置选择：<font color=red><u><strong>插入合并域</strong></u></font>.所有待替换位置都已经选定之后，再次选择<font color=red><u><strong>合并到文件</strong></u></font>位置导出结果集.</p>
+
+</div>
+  
+  <!-- <o3o key="" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+ -->
+</main>
+    <footer>
+  <div class="footer-info">© 2022-2023 Xiaers | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">渝ICP备18016611号-1</a></div>
+  <div class="footer-info">
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/xiahubs"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="mailto:wzncoder@qq.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

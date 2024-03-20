@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Simple Factory（简单工厂）模式  -  
+    
+    I&#39;m 3301
+  </title>
+  <meta name="keywords" content="Xiaers,3301,blog,博客" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/png" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<script>
+  document.documentElement.className = 'dark'
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+  </ul>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">Simple Factory（简单工厂）模式</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-09-15</div>
+      <p class="blog-desc"></p>
+      <div class="article-tags">
+        
+        <a href="/tags/设计模式">#设计模式</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <img  src=http://www.plantuml.com/plantuml/svg/Kop9ICrDLIZEJYr9pgZKpIyjoSdCI-NAp2j9BKfBJ4vL22ZAJobDBb6miL502DhPALHpAIXe0uNIyZKqhHJAyZDJk6gvk99p4ekBONeSYL7aX5UHMs9oINvH9LHDSb5gOaagL2D8CPG9KWztPuskBjm1M4MTkE3kiwdHquFPmGLt4B8e0000>
+
+<p>简单工厂模式属于创建型模式，但不属于23种设计模式之一。</p>
+<p>定义：定义一个工厂类，它可以根据参数的不同返回不同类的实例，被创建的实例通常都具有共同的父类</p>
+<p>在简单工厂模式中用于被创建实例的方法通常为静态(<em>static</em>)方法,因此简单工厂模式又被成为静态工厂方法(<em>static Factory Method</em>)</p>
+<blockquote>
+<p>需要什么产品就传入产品对应的参数，就可以获取所需要的产品对象，而无需知道其实现过程</p>
+</blockquote>
+<p><strong>三类角色</strong><br>工厂(核心)：负责实现创建所有产品的内部逻辑，<br>工厂类可以被外界直接调用，创建所需对象</p>
+<p>抽象产品：工厂类所创建的所有对象的父类，<br>封装了产品对象的公共方法，所有的具体产品为其子类对象</p>
+<p>具体产品：简单工厂模式的创建目标，<br>所有被创建的对象都是某个具体类的实例。它要实现抽象产品中声明的抽象方法</p>
+
+</div>
+  
+  <!-- <o3o key="" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+ -->
+</main>
+    <footer>
+  <div class="footer-info">© 2022-2023 Xiaers | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">渝ICP备18016611号-1</a></div>
+  <div class="footer-info">
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/xiahubs"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="mailto:wzncoder@qq.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>

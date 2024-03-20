@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Facade （外观）模式  -  
+    
+    I&#39;m 3301
+  </title>
+  <meta name="keywords" content="Xiaers,3301,blog,博客" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/png" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<script>
+  document.documentElement.className = 'dark'
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+  </ul>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%84%8F%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">意图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">适用性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">代码示例</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">Facade （外观）模式</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2023-09-24</div>
+      <p class="blog-desc"></p>
+      <div class="article-tags">
+        
+        <a href="/tags/设计模式">#设计模式</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <img  src=http://www.plantuml.com/plantuml/svg/Kop9ICrDLIZEJYr9pgZKpIyjoSdCI-NYIiv9B2vMS4jCJan9vQhcujHMo2z8BKeioSpFSzJGHE4xQMWgM2cKvMUce0Wx8uHhkVBoIr8LYZBJCqgi59vltlryz_odwtS-NJBj-QmM8Fl9ZePdVKkVzY-6sHjSMLoIckkeO6EZeE6fe-pcPcvkOA2fu9bNabgKbfYSQcU7ej29M8NE-1H2FAkWgsi7jzyAgBwq6Aka4pv9PoH90000>
+
+<h3 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h3><p>为子系统中的一组接口提供一个一致的界面，<em>Facade</em> 模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+<h3 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h3><ul>
+<li>要为一个复杂子系统提供一个简单接口时，子系统往往因为不断演化而变得越来越复杂。大多数模式使用时都会产生更多更小的类，这使得子系统更具有可重用性，也更容易对子系统进行定制，但也给那些不需要定制子系统的用户带来一些使用上的困难。<em>Facade</em> 可以提供一个简单的默认视图，这一视图对大多数用户来说已经足够，而那些需要更多的可定制性的用户可以越过 <em>Facade</em> 层；</li>
+<li>客户程序与抽象类的实现部分之间存在着很大的依赖性。引入 <em>Facade</em> 将这个子系统与客户以及其他的子系统分离，可以提高子系统的独立性和可移植性；</li>
+<li>当需要构建一个层次结构的子系统时，使用 <em>Facade</em> 模式定义子系统中每层的入口点。如果子系统之间是相互依赖的，则可以让它们仅通过<em>Facade</em> 进行通信，从而简化了它们之间的依赖关系。</li>
+</ul>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>降低了子系统与客户端之间的耦合度，使得子系统的变化不会影响调用它的客户类；</li>
+<li>对客户屏蔽了子系统组件，减少了客户处理的对象数目，并使得子系统使用起来更加容易；</li>
+<li>降低了大型软件系统中的编译依赖性，简化了系统在不同平台之间的移植过程，因为编译一个子系统不会影响其他的子系统，也不会影响外观象；</li>
+<li>不能很好地限制客户使用子系统类；</li>
+<li>增加新的子系统可能需要修改外观类或客户端的源代码，违背了“开闭原则”。</li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">&#x2F;&#x2F;&#x2F; 抽象功能接口
+interface Function &#123;
+  void start();
+  void close();
+&#125;
+&#x2F;&#x2F;&#x2F; 实现子系统的功能;处理有 Facade 对象指派的任务;没有 Facade 的任何相关信息，即没有指向 Facade 的指针。
+class CPU : Function &#123;
+	override void start() &#x3D;&#x3D;&gt; (&quot;启动 CPU&quot;);
+	override void close() &#x3D;&#x3D;&gt; (&quot;关闭 CPU&quot;);
+&#125;
+class Disk : Function &#123;
+	override void start() &#x3D;&#x3D;&gt; (&quot;启动 Disk&quot;);
+	override void close() &#x3D;&#x3D;&gt; (&quot;关闭 Disk&quot;);
+&#125;
+class Memory : Function &#123;
+	override void start() &#x3D;&#x3D;&gt; (&quot;启动 Memory&quot;);
+	override void close() &#x3D;&#x3D;&gt; (&quot;关闭 Memory&quot;);
+&#125;
+
+&#x2F;&#x2F;&#x2F; Facade 知道哪些子系统类负责处理请求;将客户的请求代理给适当的子系统对象。
+public class Computer : Function &#123;
+
+	private CPU cpu;
+	private Disk disk;
+	private Memory memory;
+  
+
+	public Computer() &#123;
+		this.cpu &#x3D; new CPU();
+		this.disk &#x3D; new Disk();
+		this.memory &#x3D; new Memory();
+	&#125;
+  
+	public override void start() &#123;
+		this.cpu.start();
+		this.disk.start();
+		this.memory.start();
+	&#125;
+	public override void close() &#123;
+		this.cpu.close();
+		this.disk.close();
+		this.memory.close();
+	&#125;
+&#125;</code></pre>
+
+</div>
+  
+  <!-- <o3o key="" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+ -->
+</main>
+    <footer>
+  <div class="footer-info">© 2022-2023 Xiaers | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">渝ICP备18016611号-1</a></div>
+  <div class="footer-info">
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/xiahubs"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="mailto:wzncoder@qq.com"><i class="iconfont icon-mail"></i></a>
+  </div>
+</footer>
+  </div>
+</body>
+
+
+</html>
